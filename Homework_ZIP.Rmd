@@ -1,0 +1,60 @@
+---
+title: "Homework 3"
+subtitle: "STAT 340: Applied Regression"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(AER)
+library(effects)
+library(ggplot2)
+library(pscl)
+```
+
+Data were collected on doctor visits from a sample of 5,190 people in the 1977/1978 Australian Health Survey. Cameron and Trivedi (1986) sought to explain the variation in doctor visits using one or more explanatory variables. The data can be found in an R data set from `library(AER)` accessible with the command `data("DoctorVisits")`. Variable descriptions can be found under `help("DoctorVisits")`.
+
+## Zero-inflated Poisson
+
+```{r}
+## Read in data from AER package
+data("DoctorVisits")
+head(DoctorVisits)
+```
+
+### Investigate the distribution of `visits` graphically. What do you observe about this distribution?
+
+```{r}
+
+```
+
+
+## Consider the following zero-inflated Poisson (ZIP) model: 
+
+```{r}
+zip1 <- zeroinfl(visits ~ illness*age + reduced*gender | private + freepoor + freerepat, 
+                 data = DoctorVisits)
+summary(zip1)
+exp(confint(zip1))
+```
+
+### Write out the form of the model fit in `zip1`. Be sure to include both the latent logistic regression and Poisson regression pieces of this model, and define the notation you use to express your model.
+
+
+
+
+
+
+### Interpret the 95% confidence interval for the effect of having free government health insurace due to low income (`freepooryes`) on the odds of not going to the doctor. 
+
+
+
+
+### Consider the 95% confidence intervals for the effects of having private health insurance or free government health insurance due to old age, disability, or veteran status. How do these effects compare to the effect of having free government health insurance due to low income? What is a reasonable explanation for the differences in these effects?
+
+
+
+
+
+### How does the effect of the number of days of reduced activity in the past 2 weeks due to illness or injury (`reduced`) on the mean mumber of doctor visits in the past 2 weeks differ for those recorded as male versus female?
